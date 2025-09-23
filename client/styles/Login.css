@@ -1,0 +1,21 @@
+.Auth {
+    
+    border: 3px solid;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(90, 82, 126);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10%;
+    margin-bottom: auto;
+    margi
+}
+
+.Login {
+    /*background-color: rgb(188, 184, 206);*/
+    
+}
+
+body{
+    background-color: rgb(9, 2, 45);
+}
