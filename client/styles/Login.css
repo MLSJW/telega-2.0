@@ -1,21 +1,89 @@
 .Auth {
-    
+    font-family: 'Roboto', sans-serif;
     border: 3px solid;
     width: 300px;
-    height: 200px;
+    height: 230px;
     background-color: rgb(90, 82, 126);
     margin-right: auto;
     margin-left: auto;
     margin-top: 10%;
     margin-bottom: auto;
-    margi
+    border-radius: 15px;
+}
+form.inName {
+    border-radius: 15px;
+    
 }
 
+form.inName label {
+    font-size: 16px;
+    display: block;
+}
+
+h1{
+    text-align: center;
+}
+form.inName input {
+    width: 50%;
+    margin: 10%;
+    border: none;
+    border-radius: 0px;
+    margin-top: 0px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.9);
+    
+}
+form.inPass {
+    margin: 0;
+    padding: 0;
+    border-radius: 15px;
+}
+
+form.inPass label {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    display: block;  
+}
+
+form.inPass input {
+    
+    width: 50%;
+    margin: 12.4%;
+    border: none;
+    border-radius: 0px;
+    margin-top: 0px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.9);
+    
+}
 .Login {
     /*background-color: rgb(188, 184, 206);*/
     
 }
 
-body{
+body {
     background-color: rgb(9, 2, 45);
+}
+
+button:hover {
+  background: #1d49aa;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+
+button {
+    
+    position: relative;
+    margin-top: -10px;
+    left: 40%;
+    background-color: #450a71; 
+    color: white; 
+    padding: 10px 20px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 5px; 
 }
