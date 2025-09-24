@@ -3,6 +3,7 @@ import "../styles/Login.css"
 import { useState } from "react";
 // import {ShowPass} from "../src/components/Auth/ShowPass";
 import ShowPass from "../src/components/Auth/ShowPass";
+import { useEffect } from "react";
 function Login() {
    
     const [inputName, setinputName] = useState("")
@@ -13,6 +14,7 @@ function Login() {
     const handleChangePass = (event) => {
         setinputPass(event.target.value)
     } 
+    
     return (
         <div className="Login">
             <div className="Auth">
@@ -34,6 +36,10 @@ function Login() {
                 </form>
                 <form class="butGO">
                     <button name="GO">Go</button>
+                    <button action="http://localhost:5173/Reg" type="submit" name="Reg">Reg</button>
+                </form>
+                <form action="http://localhost:5173/Reg" >
+                    <button action="http://localhost:5173/Reg" type="submit">Перейти</button>
                 </form>
                 {/* <p1>Логин</p1><br/>
                 <form type="text" ></form><br/>

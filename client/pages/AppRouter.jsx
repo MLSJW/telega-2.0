@@ -10,7 +10,7 @@ import { CHAT_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../src/utils.js/con
 //     )
 //};
 function AppRouter()  {
-    const user = false
+    const user = true;
     return user ?
         (
         <Routes>
@@ -26,8 +26,8 @@ function AppRouter()  {
             {publicRoutes.map(({ path, Component }) => (
                 <Route key={path} path={path} element={<Component />} />
             ))}
-            <Route path="*"/>
-            {regRoute.map(({ path, Component }) => (
+            <Route path="*" />
+            {regRoute.map(({ path, Component}) => (
                 <Route key={path} path={path} element={<Component />} />
             ))}
             <Route path="*" />
