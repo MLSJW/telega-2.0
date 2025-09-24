@@ -1,7 +1,7 @@
 
 import { Route, Routes, Navigate } from "react-router-dom";
-import { privateRoutes, publicRoutes } from "./Routes";
-import { CHAT_ROUTE, LOGIN_ROUTE } from "../src/utils.js/consts";
+import { privateRoutes, publicRoutes, regRoute } from "./Routes";
+import { CHAT_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../src/utils.js/consts";
 // function AppRouter()  {
 //     return(
 //         <div>
@@ -26,8 +26,13 @@ function AppRouter()  {
             {publicRoutes.map(({ path, Component }) => (
                 <Route key={path} path={path} element={<Component />} />
             ))}
-            <Route path="*" element={<Navigate to={LOGIN_ROUTE} replace />} />
+            <Route path="*"/>
+            {regRoute.map(({ path, Component }) => (
+                <Route key={path} path={path} element={<Component />} />
+            ))}
+            <Route path="*" />
         </Routes>
+
     )
 };
 
