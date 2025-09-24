@@ -1,10 +1,18 @@
 import React from "react";
 import "../styles/Login.css"
 import { useState } from "react";
-
+// import {ShowPass} from "../src/components/Auth/ShowPass";
+import ShowPass from "../src/components/Auth/ShowPass";
 function Login() {
-    const [name, setname] = useState("Name");
-    const [password, setpassword] = useState("");
+   
+    const [inputName, setinputName] = useState("")
+    const handleChangeName = (event) => {
+        setinputName(event.target.value)
+    } 
+    const [inputPass, setinputPass] = useState("")
+    const handleChangePass = (event) => {
+        setinputPass(event.target.value)
+    } 
     return (
         <div className="Login">
             <div className="Auth">
@@ -12,18 +20,19 @@ function Login() {
                 <form action="inName" className="inName">
                     <label>
                         Name:
-                        <input type="text" name="name" placeholder="name">
-                        </input>
+                        <input type="text" value={inputName} onChange={handleChangeName}/>
+                        
                     </label>
                 </form>
                  <form action="inPass" className="inPass">
                     <label>
-                        Pass:  
-                        <input type="password" name="password" placeholder="password">
-                        </input>
+                        Pass:<ShowPass  onChange={handleChangePass}/>
+                        {/* <input type="password" value={inputPass} onChange={handleChangePass} /> */}
+                        {/* <p>{ShowPass(inputPass)}</p> */}
+                        
                     </label>
                 </form>
-                <form>
+                <form class="butGO">
                     <button name="GO">Go</button>
                 </form>
                 {/* <p1>Логин</p1><br/>
@@ -33,6 +42,7 @@ function Login() {
             </div>
         </div>
     );
+    
 }
 
 export default Login;

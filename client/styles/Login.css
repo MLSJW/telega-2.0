@@ -37,6 +37,7 @@ form.inPass {
     margin: 0;
     padding: 0;
     border-radius: 15px;
+    display: inline-block;
 }
 
 form.inPass label {
@@ -66,17 +67,16 @@ body {
     background-color: rgb(9, 2, 45);
 }
 
-button:hover {
+form.butGO button:hover {
   background: #1d49aa;
 }
 
-button:focus {
+form.butGO button:focus {
   outline: none;
   box-shadow: 0 0 0 4px #cbd6ee;
 }
 
-button {
-    
+form.butGO button{
     position: relative;
     margin-top: -10px;
     left: 40%;
