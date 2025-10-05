@@ -1,10 +1,10 @@
 
 import { Route, Routes, Navigate } from "react-router-dom";
 import { privateRoutes, publicRoutes, regRoute } from "./Routes";
-import { CHAT_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from "../src/utils.js/consts";
-import TRUEFALSE from "../src/utils.js/TRUEFALSECONTROLLER"; 
+import { CHAT_ROUTE, LOGIN_ROUTE} from "../src/utils.js/consts";
+// import TRUEFALSE from "../src/utils.js/TRUEFALSECONTROLLER"; 
 
-import handleChangeState from "../src/utils.js/TRUEFALSECONTROLLER";
+// import handleChangeState from "../src/utils.js/TRUEFALSECONTROLLER";
 // function AppRouter()  {
 //     return(
 //         <div>
@@ -13,7 +13,7 @@ import handleChangeState from "../src/utils.js/TRUEFALSECONTROLLER";
 //     )
 //};
 function AppRouter()  {
-    const user = handleChangeState();
+    const user = false;
     
     return user ?
         (

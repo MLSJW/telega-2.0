@@ -11,7 +11,7 @@ const io = require('socket.io')(http);
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send( { express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' })
+    res.send( { express: 'EXPRESS CONNECTED TO REACT' })
 })
 
 app.use('/api', userRouter)
