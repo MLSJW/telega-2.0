@@ -27,6 +27,7 @@ class UserController {
         const id = req.params.id
         const user = await db.query('DELETE FROM Users where id = $1', [id])
         res.json(user.rows)
+    
     }
 }
 

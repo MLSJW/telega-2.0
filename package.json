@@ -1,15 +1,18 @@
 {
   "dependencies": {
+    "express": "^5.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1"
   },
   "name": "telega-2.0",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Это README",
+  "main": "server/server.js",
+  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
