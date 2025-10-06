@@ -10,7 +10,7 @@ http.createServer(function(request,response){
 });
 
 const express = require('express');
-// const pool = require('./db/db');
+// const pool =d require('./db/db');
 
 // const app = express();
 // io.on('connection',(socket)=> {
