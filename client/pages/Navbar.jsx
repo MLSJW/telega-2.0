@@ -3,7 +3,7 @@
 function Navbar() {
     return (
         <div>
-            Navbar
+            Сосал?
         </div>
     );
 };

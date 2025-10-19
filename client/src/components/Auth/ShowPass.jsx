@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./sp.css"
 
 function ShowPass({value}){
 	const [sPass, setsPass] = useState(false);
