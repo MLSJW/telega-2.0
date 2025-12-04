@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-const Login = ({ setUser }) => {
+const Register = ({ setUser }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -12,20 +13,20 @@ const Login = ({ setUser }) => {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password, username })
             });
 
             const data = await response.json();
             
             if (response.ok) {
                 localStorage.setItem('token', data.token);
-                setUser(data.user);
+                setUser({ email, username });
                 navigate('/');
             } else {
-                setError(data.error || 'Login failed');
+                setError(data.error || 'Registration failed');
             }
         } catch (err) {
             setError('Network error. Please try again.');
@@ -35,9 +36,18 @@ const Login = ({ setUser }) => {
     return (
         <div className="auth-container">
             <div className="auth-form">
-                <h2>Login to TELEGA 2.0</h2>
+                <h2>Register for TELEGA 2.0</h2>
                 {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Username:</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
                     <div className="form-group">
                         <label>Email:</label>
                         <input
@@ -54,16 +64,17 @@ const Login = ({ setUser }) => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
+                            minLength="6"
                         />
                     </div>
-                    <button type="submit" className="auth-btn">Login</button>
+                    <button type="submit" className="auth-btn">Register</button>
                 </form>
                 <p className="auth-link">
-                    Don't have an account? <Link to="/register">Register here</Link>
+                    Already have an account? <Link to="/login">Login here</Link>
                 </p>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;

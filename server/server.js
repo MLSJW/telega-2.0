@@ -1,36 +1,70 @@
-const express = require('express')
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import http from 'http';
+import { WebSocketServer } from 'ws';
+import authRoutes from './routes/authRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import './config/db.js'; 
 
-const PORT = process.env.PORT || 9998
+dotenv.config();
+
 const app = express();
-const userRouter = require('./routes/userRoutes')
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
-const cors = require('cors');
+const server = http.createServer(app);
 
 
-app.use(express.json())
+app.use(cors({
+    origin: 'http://localhost:5173', 
+    credentials: true
+}));
+app.use(express.json());
 
 
-const corsOptions = {
-    origin: ['http://localhost:5173'],
-    methods: ['GET', 'POST']
-}
+app.use('/api/auth', authRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/users', userRoutes);
 
-app.use(cors(corsOptions))
-app.use(express.json({extended: true}))
 
-app.get('/api', (req, res) => {
-    res.json({ab:['fg','sdf']})
+const wss = new WebSocketServer({ server });
+
+const clients = new Map();
+
+wss.on('connection', (ws, req) => {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const userId = url.searchParams.get('userId');
+    
+    if (userId) {
+        clients.set(userId, ws);
+        console.log(`User ${userId} connected`);
+    }
+
+    ws.on('message', (message) => {
+        try {
+            const data = JSON.parse(message.toString());
+            const { type, to, content } = data;
+
+            if (type === 'message' && clients.has(to)) {
+                clients.get(to).send(JSON.stringify({
+                    type: 'message',
+                    from: userId,
+                    content: content,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+        } catch (error) {
+            console.error('WebSocket error:', error);
+        }
+    });
+
+    ws.on('close', () => {
+        clients.delete(userId);
+        console.log(`User ${userId} disconnected`);
+    });
 });
 
-
-app.use('/api', userRouter)
-app.get('/api', (req, res) => {
-    res.sendFile(__dirname + 'package.json')
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`WebSocket server ready`);
 });
-
-http.listen(PORT, () => {
-    console.log(`server started on port ${PORT}`)
-});
-
-
