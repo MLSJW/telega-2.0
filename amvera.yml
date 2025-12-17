@@ -1,25 +1,20 @@
+  
+version: null
 meta:
   environment: node
   toolchain:
-    name: node
-    version: 22
-
+    name: npm
+    version: "22"
 build:
-  buildCommand: |
-    echo "Building frontend..."
-    cd client && npm ci && npm run build
-    echo "Installing backend dependencies..."
-    cd ../server && npm ci
-    echo "Build completed!"
-  outputDirectory: server
-
+  skip: false
+  additionalCommands: null
+  artifacts:
+    "*": /
 run:
-  startCommand: cd server && node server.js
+  scriptName: server/server.js
+  scriptArguments: null
+  nodeArguments: null
+  command: npm run start
   persistenceMount: /data
-  env:
-    NODE_ENV: production
-    PORT: 80
-    FRONTEND_URL: https://${AMVERA_APP_NAME}.amvera.io
-  healthcheck:
-    path: /api/health
-    interval: 30
+  containerPort: 80
+serviceType: compute
