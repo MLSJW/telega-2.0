@@ -2,7 +2,7 @@ meta:
   environment: node
   toolchain:
     name: node
-    version: 18
+    version: 22
 
 build:
   buildCommand: |
