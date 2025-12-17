@@ -1,0 +1,25 @@
+meta:
+  environment: node
+  toolchain:
+    name: node
+    version: 18
+
+build:
+  buildCommand: |
+    echo "Building frontend..."
+    cd client && npm ci && npm run build
+    echo "Installing backend dependencies..."
+    cd ../server && npm ci
+    echo "Build completed!"
+  outputDirectory: server
+
+run:
+  startCommand: cd server && node server.js
+  persistenceMount: /data
+  env:
+    NODE_ENV: production
+    PORT: 80
+    FRONTEND_URL: https://${AMVERA_APP_NAME}.amvera.io
+  healthcheck:
+    path: /api/health
+    interval: 30
